@@ -31,19 +31,21 @@
             var btnCounter = [0,0,0,0];
 
             var contentObj = {
-                btn1: `button 1 clicked times ${btnCounter[0]}`,
-                btn2: `button 2 clicked times ${btnCounter[1]}`,
-                btn3: `button 3 clicked times ${btnCounter[2]}`,
-                btn4: `button 4 clicked times ${btnCounter[3]}`
+                btn1: `button 1 has clicked ${btnCounter[0]} times`,
+                btn2: `button 2 has clicked ${btnCounter[1]} times`,
+                btn3: `button 3 has clicked ${btnCounter[2]} times`,
+                btn4: `button 4 has clicked ${btnCounter[3]} times`
             };
 
 
             Object.keys(contentObj).forEach((item) => {
                 const indexOfItem = Object.keys(contentObj).indexOf(item);
+
                 document.getElementById(item).onclick = function () {
                     btnCounter[indexOfItem]++;
                     changeContent(`button <span>${indexOfItem + 1}</span> clicked <span>${btnCounter[indexOfItem]}</span> times`);
                 };
+
                 document.getElementById(item).onauxclick = function () {
                     btnCounter[indexOfItem] = 0;
                     changeContent(`button <span>${indexOfItem + 1}</span> clicked <span>${btnCounter[indexOfItem]}</span> times`);
