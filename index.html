@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>JS Events</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <section>
+        <div class="main">
+            <h1 id="headerTXT">JS Events</h1>
+            <div id="btn-container"> 
+                <button class="btn" id="btn1">button 1</button>
+                <button class="btn" id="btn2">button 2</button>
+                <button class="btn" id="btn3">button 3</button>
+                <button class="btn" id="btn4">button 4</button>
+            </div>
+            <p id="output">No button clicked</p>
+        </div>
+    </section>
+
+    <script>
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            var btn1 = document.getElementById('btn1');
+            var btn2 = document.getElementById('btn2');
+            var btn3 = document.getElementById('btn3');
+            var btn4 = document.getElementById('btn4');
+            var output = document.getElementById('output');
+
+            var btnCounter = [0,0,0,0];
+
+            var contentObj = {
+                btn1: `button 1 clicked times ${btnCounter[0]}`,
+                btn2: `button 2 clicked times ${btnCounter[1]}`,
+                btn3: `button 3 clicked times ${btnCounter[2]}`,
+                btn4: `button 4 clicked times ${btnCounter[3]}`
+            };
+
+
+            Object.keys(contentObj).forEach((item) => {
+                const indexOfItem = Object.keys(contentObj).indexOf(item);
+                document.getElementById(item).onclick = function () {
+                    btnCounter[indexOfItem]++;
+                    changeContent(`button <span>${indexOfItem + 1}</span> clicked <span>${btnCounter[indexOfItem]}</span> times`);
+                };
+                document.getElementById(item).onauxclick = function () {
+                    btnCounter[indexOfItem] = 0;
+                    changeContent(`button <span>${indexOfItem + 1}</span> clicked <span>${btnCounter[indexOfItem]}</span> times`);
+                };
+            });
+            
+            function changeContent(txtContent){
+                output.innerHTML = txtContent;
+            }
+        </script>
+  </body>
+</html>
